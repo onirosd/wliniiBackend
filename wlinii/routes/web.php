@@ -14,6 +14,7 @@ use Illuminate\Support\Facades\Route;
 */
 
 Route::get('/', 'LoginController@index')->name('login');
+Route::get('login', 'LoginController@index');
 Route::post('login', 'LoginController@login');
 Route::get('dashboard', 'LoginController@dashboard')->name('dashboard');
 Route::get('update/{id?}/{act?}', 'LoginController@update')->name('updateUser');
