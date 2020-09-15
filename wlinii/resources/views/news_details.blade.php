@@ -44,11 +44,13 @@
                             </div>
 
                             <div class="form-group row">
-  <label for="example-datetime-local-input" class="col-2 col-form-label">Fecha Evento</label>
-  <div class="col-10">
-    <input class="form-control" type="date" name = "fechacurso" value="{{ $news->FechaCurso }}" id="example-datetime-local-input">
-  </div>
-</div>
+                                <label for="example-datetime-local-input" class="col-2 col-form-label">Fecha Evento</label>
+                                <div class="col-10">
+                                    @if ($news) <input class="form-control" type="date" name = "fechacurso" value="{{ $news->FechaCurso }}" id="example-datetime-local-input">
+                                    @else <input class="form-control" type="date" name = "fechacurso" id="example-datetime-local-input">
+                                    @endif
+                                </div>
+                            </div>
                             
                             <div class="form-group">
                                 <div class="form-check form-check-inline">
