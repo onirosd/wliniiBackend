@@ -1,6 +1,6 @@
 <aside class="menu-sidebar d-none d-lg-block">
     <div class="logo">
-        <a href="/admin/dashboard">
+        <a href="{{ url('/dashboard') }}">
             ADMINISTRADOR DE WLINII
             <!-- <img src="images/icon/logo.png" alt="Cool Admin" /> -->
         </a>
