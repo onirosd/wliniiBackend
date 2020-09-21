@@ -364,8 +364,8 @@ class PublicationController extends Controller
              
              //echo $image->Des_url; 
 
-             if(File::exists($image_path)) {
-                File::delete($image_path);
+             if(File::exists($image->Des_url)) {
+                File::delete($image->Des_url);
              }
 
  //if ( is_file($this->storage_path.$image->Des_url) ) {
