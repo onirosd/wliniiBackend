@@ -10,7 +10,6 @@ use App\Models\PublicacionDetalle;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
-use Illuminate\Support\Facades\File;
 
 class PublicationController extends Controller
 {
@@ -358,38 +357,9 @@ class PublicationController extends Controller
     public function removeImage(Request $request, $imageId){
         $userId = $this->authUser()->IdUsuario;
         try{
-
             $image = DB::table('publicaciondetalleimagenes')->where('IdPubImage', $imageId)->first();
-            // $id = DB::table('publicaciondetalleimagenes')->where('IdPubImage', $imageId)->delete();
-             
-             //echo $image->Des_url;
-
-             // if (file_exists($this->storage_path.$image->Des_url)) {
-             //    echo $this->storage_path.$image->Des_url;
-             //  @unlink($this->storage_path.$image->Des_url);
-
-             // } 
-
-             // if(File::exists($image->Des_url)) {
-             //    File::delete($image->Des_url);
-             //    echo"entrando con exito";
-             // }
-
-//  if ( is_file($this->storage_path.$image->Des_url) ) {
-//     echo "entrando aqui";
-//    chown ($this->storage_path.$image->Des_url, 465 );
-//    fclose($this->storage_path.$image->Des_url);
-//    $do = unlink ($this->storage_path.$image->Des_url);
-
-//    if($do=="1"){ 
-//     echo "The file was deleted successfully."; 
-// } else { echo "There was an error trying to delete the file."; } 
-// }
-
-            //unlink($this->storage_path.$image->Des_url);
-            //Storage::delete($this->storage_path.$image->Des_url);
-
-             // File::delete($this->storage_path.$image->Des_url);
+            $id = DB::table('publicaciondetalleimagenes')->where('IdPubImage', $imageId)->delete();
+            unlink($this->storage_path.$image->Des_url);
         }catch(Throwable $e){
             return response()->json([
                 'status' => 'fail',
