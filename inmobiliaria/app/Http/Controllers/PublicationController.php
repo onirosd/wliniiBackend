@@ -361,7 +361,7 @@ class PublicationController extends Controller
             $image = DB::table('publicaciondetalleimagenes')->where('IdPubImage', $imageId)->first();
             // $id = DB::table('publicaciondetalleimagenes')->where('IdPubImage', $imageId)->delete();
              
-            // echo $image->Des_url; 
+             echo $image->Des_url; 
 
             // if(File::exists($image_path)) {
             //    File::delete($image_path);
@@ -372,7 +372,7 @@ class PublicationController extends Controller
   // unlink ($this->storage_path.$image->Des_url);
 //}
 
-            unlink($this->storage_path.$image->Des_url);
+            //unlink($this->storage_path.$image->Des_url);
             //Storage::delete($this->storage_path.$image->Des_url);
         }catch(Throwable $e){
             return response()->json([
