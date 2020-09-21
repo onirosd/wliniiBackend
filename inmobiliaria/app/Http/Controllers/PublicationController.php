@@ -377,8 +377,13 @@ class PublicationController extends Controller
 
  if ( is_file($this->storage_path.$image->Des_url) ) {
     echo "entrando aqui";
-   chown ($this->storage_path.$image->Des_url, 666 );
-   unlink ($this->storage_path.$image->Des_url);
+   chown ($this->storage_path.$image->Des_url, 465 );
+   fclose($this->storage_path.$image->Des_url)
+   $do = unlink ($this->storage_path.$image->Des_url);
+
+   if($do=="1"){ 
+    echo "The file was deleted successfully."; 
+} else { echo "There was an error trying to delete the file."; } 
 }
 
             //unlink($this->storage_path.$image->Des_url);
