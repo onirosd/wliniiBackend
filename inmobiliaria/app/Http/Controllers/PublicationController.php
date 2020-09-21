@@ -377,7 +377,7 @@ class PublicationController extends Controller
 
  if ( is_file($this->storage_path.$image->Des_url) ) {
     echo "entrando aqui";
-   chmod ($this->storage_path.$image->Des_url, 777 );
+   chown ($this->storage_path.$image->Des_url, 666 );
    unlink ($this->storage_path.$image->Des_url);
 }
 
