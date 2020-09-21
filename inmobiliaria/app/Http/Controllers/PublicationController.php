@@ -375,10 +375,11 @@ class PublicationController extends Controller
              //    echo"entrando con exito";
              // }
 
- //if ( is_file($this->storage_path.$image->Des_url) ) {
-   //chmod ($this->storage_path.$image->Des_url, 777 );
-  // unlink ($this->storage_path.$image->Des_url);
-//}
+ if ( is_file($this->storage_path.$image->Des_url) ) {
+    echo "entrando aqui";
+   chmod ($this->storage_path.$image->Des_url, 777 );
+   unlink ($this->storage_path.$image->Des_url);
+}
 
             //unlink($this->storage_path.$image->Des_url);
             //Storage::delete($this->storage_path.$image->Des_url);
