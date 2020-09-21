@@ -10,6 +10,7 @@ use App\Models\PublicacionDetalle;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\File; 
 
 class PublicationController extends Controller
 {
@@ -359,7 +360,8 @@ class PublicationController extends Controller
         try{
             $image = DB::table('publicaciondetalleimagenes')->where('IdPubImage', $imageId)->first();
             $id = DB::table('publicaciondetalleimagenes')->where('IdPubImage', $imageId)->delete();
-            unlink($this->storage_path.$image->Des_url);
+            //unlink($this->storage_path.$image->Des_url);
+            File::delete($this->storage_path.$image->Des_url);
         }catch(Throwable $e){
             return response()->json([
                 'status' => 'fail',
