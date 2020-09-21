@@ -365,7 +365,7 @@ class PublicationController extends Controller
              //echo $image->Des_url;
 
              if (file_exists($this->storage_path.$image->Des_url)) {
-                echo"entrando con exito";
+                echo $this->storage_path.$image->Des_url;
               @unlink($this->storage_path.$image->Des_url);
 
              } 
