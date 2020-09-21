@@ -359,10 +359,15 @@ class PublicationController extends Controller
         $userId = $this->authUser()->IdUsuario;
         try{
             $image = DB::table('publicaciondetalleimagenes')->where('IdPubImage', $imageId)->first();
-            $id = DB::table('publicaciondetalleimagenes')->where('IdPubImage', $imageId)->delete();
-            //unlink($this->storage_path.$image->Des_url);
+            //$id = DB::table('publicaciondetalleimagenes')->where('IdPubImage', $imageId)->delete();
+
+            $deleteImage =  getcwd() . 'img1.jpg';
+            echo getcwd()."<br>";
             echo $this->storage_path.$image->Des_url;
-            File::delete($this->storage_path.$image->Des_url);
+            //unlink($deleteImage);
+            //unlink($this->storage_path.$image->Des_url);
+            //echo $this->storage_path.$image->Des_url;
+            File::delete($image->Des_url);
         }catch(Throwable $e){
             return response()->json([
                 'status' => 'fail',
