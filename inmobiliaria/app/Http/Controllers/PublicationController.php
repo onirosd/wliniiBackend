@@ -363,9 +363,10 @@ class PublicationController extends Controller
 
             $deleteImage =  getcwd() . 'img1.jpg';
             echo getcwd()."<br>";
-            echo $this->storage_path."<br>";
+            echo public_path()."<br>";
             echo $image->Des_url;
-            unlink($image->Des_url);
+            Storage::delete('public/'.$image->Des_url);
+            unlink(public_path().'/public/'.$image->Des_url);
             //unlink($this->storage_path.$image->Des_url);
             //echo $this->storage_path.$image->Des_url;
            // File::delete($image->Des_url);
