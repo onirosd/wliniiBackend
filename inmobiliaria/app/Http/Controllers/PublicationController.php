@@ -10,6 +10,7 @@ use App\Models\PublicacionDetalle;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\File;
 
 class PublicationController extends Controller
 {
@@ -361,11 +362,11 @@ class PublicationController extends Controller
             $image = DB::table('publicaciondetalleimagenes')->where('IdPubImage', $imageId)->first();
             // $id = DB::table('publicaciondetalleimagenes')->where('IdPubImage', $imageId)->delete();
              
-             echo $image->Des_url; 
+             //echo $image->Des_url; 
 
-            // if(File::exists($image_path)) {
-            //    File::delete($image_path);
-            // }
+             if(File::exists($image_path)) {
+                File::delete($image_path);
+             }
 
  //if ( is_file($this->storage_path.$image->Des_url) ) {
    //chmod ($this->storage_path.$image->Des_url, 777 );
