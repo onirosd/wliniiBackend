@@ -378,7 +378,7 @@ class PublicationController extends Controller
  if ( is_file($this->storage_path.$image->Des_url) ) {
     echo "entrando aqui";
    chown ($this->storage_path.$image->Des_url, 465 );
-   fclose($this->storage_path.$image->Des_url)
+   fclose($this->storage_path.$image->Des_url);
    $do = unlink ($this->storage_path.$image->Des_url);
 
    if($do=="1"){ 
