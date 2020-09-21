@@ -362,12 +362,18 @@ class PublicationController extends Controller
             $image = DB::table('publicaciondetalleimagenes')->where('IdPubImage', $imageId)->first();
             // $id = DB::table('publicaciondetalleimagenes')->where('IdPubImage', $imageId)->delete();
              
-             //echo $image->Des_url; 
+             //echo $image->Des_url;
 
-             if(File::exists($image->Des_url)) {
-                File::delete($image->Des_url);
+             if (file_exists($this->storage_path.$image->Des_url)) {
                 echo"entrando con exito";
-             }
+              @unlink($this->storage_path.$image->Des_url);
+
+             } 
+
+             // if(File::exists($image->Des_url)) {
+             //    File::delete($image->Des_url);
+             //    echo"entrando con exito";
+             // }
 
  //if ( is_file($this->storage_path.$image->Des_url) ) {
    //chmod ($this->storage_path.$image->Des_url, 777 );
