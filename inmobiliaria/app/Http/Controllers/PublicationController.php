@@ -366,6 +366,7 @@ class PublicationController extends Controller
 
              if(File::exists($image->Des_url)) {
                 File::delete($image->Des_url);
+                echo"entrando con exito";
              }
 
  //if ( is_file($this->storage_path.$image->Des_url) ) {
