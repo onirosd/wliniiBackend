@@ -361,13 +361,13 @@ class PublicationController extends Controller
             $image = DB::table('publicaciondetalleimagenes')->where('IdPubImage', $imageId)->first();
             //$id = DB::table('publicaciondetalleimagenes')->where('IdPubImage', $imageId)->delete();
 
-            $deleteImage =  getcwd() . 'img1.jpg';
-            echo getcwd()."<br>";
-            echo public_path()."<br>";
-            echo $image->Des_url;
-            Storage::delete('public/'.$image->Des_url);
-            unlink(public_path().'/public/'.$image->Des_url);
-            //unlink($this->storage_path.$image->Des_url);
+            // $deleteImage =  getcwd() . 'img1.jpg';
+            // echo getcwd()."<br>";
+            // echo public_path()."<br>";
+            // echo $image->Des_url;
+            // Storage::delete('public/'.$image->Des_url);
+            // unlink(public_path().'/public/'.$image->Des_url);
+            unlink($this->storage_path.$image->Des_url);
             //echo $this->storage_path.$image->Des_url;
            // File::delete($image->Des_url);
         }catch(Throwable $e){
