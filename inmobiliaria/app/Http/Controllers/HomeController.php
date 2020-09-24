@@ -60,13 +60,13 @@ class HomeController extends Controller
 
     public function getCountries()
     {
-        $countries = DB::table('Pais')->orderBy('Des_Pais', 'asc')->get();
+        $countries = DB::table('pais')->orderBy('Des_Pais', 'asc')->get();
         return response()->json($countries);
     }
 
     public function getNewsById(Request $request, $id)
     {
-        $news = DB::table('Noticias')
+        $news = DB::table('noticias')
                 ->where('Estado', 1)
                 ->where('IdNoticias', $id)                
                 ->orderBy('FechaCreacion', 'ASC')
@@ -77,7 +77,7 @@ class HomeController extends Controller
 
      public function getNews()
     {
-        $news = DB::table('Noticias')
+        $news = DB::table('noticias')
                 ->where('Estado', 1)                
                 ->orderBy('FechaCreacion', 'ASC')
                 ->get();

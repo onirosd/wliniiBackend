@@ -41,7 +41,7 @@ class NotificationController extends Controller
         $countPerPage = $_GET['count'];
         $offset = ( intval($_GET['page']) - 1) * $countPerPage;
 
-        DB::table('Notificaciones')
+        DB::table('notificaciones')
             ->where('IdUsuario', $userId)
             ->orderBy('FechaCreacion', 'desc')
             ->offset($offset)
@@ -49,9 +49,9 @@ class NotificationController extends Controller
             ->update(array('Flg_leer' => 1));
 
         $notifications = Notificacion::query()
-                        ->join('Usuario as u', 'u.IdUsuario', '=', 'notificaciones.IdUsuarioRemitente')
-                        ->join('Persona as p', 'p.IdPersonal', '=', 'u.IdPersonal')
-                        ->leftJoin('Valoraciones as v', 'v.IdNotificacion', '=', 'notificaciones.IdNotificacion')
+                        ->join('usuario as u', 'u.IdUsuario', '=', 'notificaciones.IdUsuarioRemitente')
+                        ->join('persona as p', 'p.IdPersonal', '=', 'u.IdPersonal')
+                        ->leftJoin('valoraciones as v', 'v.IdNotificacion', '=', 'notificaciones.IdNotificacion')
                         ->select(
                             'notificaciones.IdNotificacion',
                             'notificaciones.Des_Detalle',
@@ -77,7 +77,7 @@ class NotificationController extends Controller
     public function UnReadCount(Request $request){
         $userId = $this->authUser()->IdUsuario;
 
-        $noti_count = DB::table('Notificaciones')
+        $noti_count = DB::table('notificaciones')
                         ->where([
                             ['IdUsuario', $userId],
                             ['Flg_Leer', 0]
@@ -90,9 +90,9 @@ class NotificationController extends Controller
     {
         $userId = $this->authUser()->IdUsuario;
 
-        $notifications = DB::table('Notificaciones as n')
-                        ->join('Usuario as u', 'u.IdUsuario', '=', 'n.IdUsuarioRemitente')
-                        ->join('Persona as p', 'p.IdPersonal', '=', 'u.IdPersonal')
+        $notifications = DB::table('notificaciones as n')
+                        ->join('usuario as u', 'u.IdUsuario', '=', 'n.IdUsuarioRemitente')
+                        ->join('persona as p', 'p.IdPersonal', '=', 'u.IdPersonal')
                         ->select(
                             'n.Des_Detalle',
                             'n.Flg_Tipo',
@@ -171,10 +171,10 @@ class NotificationController extends Controller
 
         $receiverId = $request->input('to');
         $receiverInfo = Usuario::findOrFail($receiverId);
-        $receiver = DB::table('Persona')
+        $receiver = DB::table('persona')
                             ->where('IdPersonal', $receiverInfo->IdPersonal)
                             ->select('Des_Correo1')->first();
-        $sender = DB::table('Persona')
+        $sender = DB::table('persona')
                             ->where('IdPersonal', $senderInfo->IdPersonal)
                             ->select('Des_Correo1')->first();
 
@@ -215,7 +215,7 @@ class NotificationController extends Controller
         $configuracion = DB::table('ConfigMaster')
                             ->where('CodConfigmaster', 1)
                             ->select('valor_ingresado')->first();
-        // $sender = DB::table('Persona')
+        // $sender = DB::table('persona')
         //                     ->where('IdPersonal', $senderInfo->IdPersonal)
         //                     ->select('Des_Correo1')->first();
 

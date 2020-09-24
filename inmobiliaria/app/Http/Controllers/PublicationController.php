@@ -125,8 +125,8 @@ class PublicationController extends Controller
         $personId = $this->authUser()->IdPersonal;
         $personId = str_pad($personId,8,"0",STR_PAD_LEFT);
 
-        $affiliated = DB::table('PersonaRelacion_Hist as a')
-                    ->join('Usuario as u', 'a.IdPersonal',  '=', 'u.IdPersonal')
+        $affiliated = DB::table('personarelacion_hist as a')
+                    ->join('usuario as u', 'a.IdPersonal',  '=', 'u.IdPersonal')
                     ->select(
                         'u.IdUsuario'
                     )->where([
@@ -426,7 +426,7 @@ class PublicationController extends Controller
 
         // Generate notifications
         if($data['Id_EstadoPublicacion'] == 3 ){
-            $maxId = DB::table('Notificaciones')->max('IdNotificacion');
+            $maxId = DB::table('notificaciones')->max('IdNotificacion');
             $selectedUserId = $data['IdUsuarioCompartido'];
 
             $notiId=str_pad(intval($maxId) + 1, 8, "0", STR_PAD_LEFT);
@@ -451,7 +451,7 @@ class PublicationController extends Controller
                 'FechaCreacion' => $date
             );
 
-            DB::table('Notificaciones')->insert($notifications);
+            DB::table('notificaciones')->insert($notifications);
         }
 
         return json_encode(array('status' => 'success', 'message' => 'updated the state of Publicacion'));

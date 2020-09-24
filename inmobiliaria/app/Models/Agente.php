@@ -6,7 +6,7 @@ use Illuminate\Database\Eloquent\Model;
 
 class Agente extends Model
 {
-    protected $table = 'BDAgentesServicio';
+    protected $table = 'bdagentesservicio';
     protected $primaryKey = 'IdbdAgente';
     public $incrementing = false;
     protected $fillable = ['IdbdAgente','CodigoRegistro','Nombres','NumDocumento','Direccion','Correo','FechaInscripcion','Estado'];

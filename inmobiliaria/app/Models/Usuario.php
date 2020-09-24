@@ -13,7 +13,7 @@ class Usuario extends Model implements JWTSubject, AuthenticatableContract, Auth
 {
 	use Authenticatable, Authorizable;
 
-    protected $table = 'Usuario';
+    protected $table = 'usuario';
     protected $primaryKey = 'IdUsuario';
     public $incrementing = false;
     protected $fillable = ['IdUsuario','IdPersonal','NUsuario','NContrasenia','Flg_Estado','FechaModificacion','FechaCreacion','UsuarioCreacion','UsuarioModificacion','Flg_TipoUsuario'];

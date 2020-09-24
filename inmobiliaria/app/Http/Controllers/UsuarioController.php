@@ -67,7 +67,7 @@ class UsuarioController extends Controller
                 
                         }
 
-                        $persona = DB::table('Persona')->where('IdPersonal', $user->IdPersonal)->first();
+                        $persona = DB::table('persona')->where('IdPersonal', $user->IdPersonal)->first();
 
                         return response()->json([
                             'username' => $user->NUsuario,

@@ -149,10 +149,10 @@ class PersonaController extends Controller
 
     public function getPersonalNames(Request $request)
     {
-        $personNames = DB::table('Usuario')
-            ->join('Persona', 'Usuario.IdPersonal', 'Persona.IdPersonal')
+        $personNames = DB::table('usuario')
+            ->join('persona', 'Usuario.IdPersonal', 'persona.IdPersonal')
             ->where('Usuario.Flg_TipoUsuario', 1)
-            ->select(['Usuario.IdUsuario', 'Persona.Des_NombreCompleto'])->get();
+            ->select(['Usuario.IdUsuario', 'persona.Des_NombreCompleto'])->get();
         return response()->json($personNames);
     }
 
@@ -223,8 +223,8 @@ class PersonaController extends Controller
         $personId = $this->authUser()->IdPersonal;
         $personId = str_pad($personId,8,"0",STR_PAD_LEFT);
 
-        $affiliated = DB::table('PersonaRelacion_Hist as a')
-                    ->join('Persona as b', 'a.IdPersonal',  '=', 'b.IdPersonal')
+        $affiliated = DB::table('personarelacion_hist as a')
+                    ->join('persona as b', 'a.IdPersonal',  '=', 'b.IdPersonal')
                     ->select(
                         'a.IdPersonal',
                         'b.Des_NombreCompleto as Nombre',
@@ -236,8 +236,8 @@ class PersonaController extends Controller
                         ['a.Flg_EstadoAfiliado', 1]
                     ])->get();
         
-        $unAffiliated = DB::table('BDSolicitudes as a')
-                    ->join('Persona as b', 'a.CodigoMVCSPadre', '=', 'b.CodigoMVCS')
+        $unAffiliated = DB::table('bdsolicitudes as a')
+                    ->join('persona as b', 'a.CodigoMVCSPadre', '=', 'b.CodigoMVCS')
                     ->select(
                         'a.IdbdSolicitudes',
                         DB::raw("a.PrimerNombre +' '+a.SegundoNombre +' '+ApellidoPaterno+' '+ApellidoMaterno as Nombre"),
@@ -257,15 +257,15 @@ class PersonaController extends Controller
 
     private function fetchResumenAgente($personaId){
         $agente = ResumenAgente::query()
-                ->join('Persona', 'resumenagente.IdPersonal', 'Persona.IdPersonal')
+                ->join('persona', 'resumenagente.IdPersonal', 'persona.IdPersonal')
                 ->select(
                     'resumenagente.*',
-                    'Persona.Des_Telefono1',
-                    'Persona.Des_Correo1',
-                    'Persona.Des_Rs_Facebook',
-                    'Persona.Des_Rs_Twitter',
-                    'Persona.Des_Rs_Linkedin',
-                    'Persona.Img_Personal'
+                    'persona.Des_Telefono1',
+                    'persona.Des_Correo1',
+                    'persona.Des_Rs_Facebook',
+                    'persona.Des_Rs_Twitter',
+                    'persona.Des_Rs_Linkedin',
+                    'persona.Img_Personal'
                 )->where('resumenagente.IdPersonal', $personaId)->first();
         
         return $agente;
