@@ -20,7 +20,6 @@ class LoginController extends Controller
     }
     public function login(Request $request)
     {       
-        
         $user =  UsuarioModel::where('NUsuario', 'Administrador')->first();
         $solicitud = SolicitudModel::where('Estado', 0)->get();
 

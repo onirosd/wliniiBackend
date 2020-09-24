@@ -11,7 +11,7 @@ class NewsController extends Controller
 {
     public function index(Request $request)
     {
-        $newsList = DB::table('Noticias')
+        $newsList = DB::table('noticias')
                     ->orderBy('FechaCreacion', 'ASC')
                     ->get();
 
@@ -20,7 +20,7 @@ class NewsController extends Controller
     public function newsDetail($id = null)
     {   
         if($id){
-            $news = DB::table('Noticias')
+            $news = DB::table('noticias')
                     ->where('IdNoticias', $id)
                     ->first();
         }else{
@@ -43,12 +43,12 @@ class NewsController extends Controller
         );
 
         if($IdNoticias){
-            DB::table('Noticias')->where('IdNoticias', $IdNoticias)
+            DB::table('noticias')->where('IdNoticias', $IdNoticias)
                 ->update($data);
         }else{
             $date = date("Y-m-d");
             $data['FechaCreacion'] = $date;
-            DB::table('Noticias')->insert($data);
+            DB::table('noticias')->insert($data);
         };
 
         return redirect()->route('news');
@@ -57,7 +57,7 @@ class NewsController extends Controller
     public function deleteNews(Request $request, $id)
     {       
         if($id){
-            DB::table('Noticias')->where('IdNoticias', $id)
+            DB::table('noticias')->where('IdNoticias', $id)
                 ->delete();
         }
 

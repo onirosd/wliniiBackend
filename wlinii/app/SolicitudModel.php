@@ -6,7 +6,7 @@ use Illuminate\Database\Eloquent\Model;
 
 class SolicitudModel extends Model
 {
-    protected $table = "BDSolicitudes"; 
+    protected $table = "bdsolicitudes"; 
     
     public function getKeyName(){
         return "IdbdSolicitudes";
