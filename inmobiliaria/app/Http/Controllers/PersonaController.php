@@ -150,9 +150,9 @@ class PersonaController extends Controller
     public function getPersonalNames(Request $request)
     {
         $personNames = DB::table('usuario')
-            ->join('persona', 'Usuario.IdPersonal', 'persona.IdPersonal')
-            ->where('Usuario.Flg_TipoUsuario', 1)
-            ->select(['Usuario.IdUsuario', 'persona.Des_NombreCompleto'])->get();
+            ->join('persona', 'usuario.IdPersonal', 'persona.IdPersonal')
+            ->where('usuario.Flg_TipoUsuario', 1)
+            ->select(['usuario.IdUsuario', 'persona.Des_NombreCompleto'])->get();
         return response()->json($personNames);
     }
 
