@@ -96,10 +96,10 @@
 
         <div class="clearfix f-14">
             <div class="left">
-                <div>Propietario: <?php echo $client ?> </div>
-                <div>Dirección: <?php echo $address ?></div>
-                <div>M2: <?php echo $totalarea ?></div>
-                <div>Tipo de Propiedad: <?php echo $inmueble ?></div>
+                <div>Propietario: <?php echo isset($client) ? $client : '' ?> </div>
+                <div>Dirección: <?php echo isset($address) ? $address : '' ?></div>
+                <div>M2: <?php echo isset($totalarea) ? $totalarea : '' ?></div>
+                <div>Tipo de Propiedad: <?php echo isset($inmueble) ? $inmueble : '' ?></div>
             </div>
         </div>
         <div class="clearfix f-14">
@@ -110,13 +110,13 @@
 
         <div class="page-content">
             <div class="description">
-                <p class="indent-36 f-14">Referente al estudio de Análisis de Mercado Comparativo (AMC) realizado a su inmueble, damos a conocer los resultados que arrojó el estudio según nuestro conocimiento en el mercado, el valor de la propiedad para <strong>(<?php echo $operation ?>)</strong></p>
+                <p class="indent-36 f-14">Referente al estudio de Análisis de Mercado Comparativo (AMC) realizado a su inmueble, damos a conocer los resultados que arrojó el estudio según nuestro conocimiento en el mercado, el valor de la propiedad para <strong>(<?php echo isset($operation) ? $operation : '' ?>)</strong></p>
                 <p class="indent-36 f-14">Se realizó un AMC tomando como referencia para los efectos de valoración de su inmueble, otras propiedades actualmente en promoción, así como operaciones inmobiliarias cerradas tanto por su ubicación, antigüedad, usos y mantenimiento las cuales eran comparables, aun cuando la superficie varia, obteniendo un resultado de rango de precio determinado, que va desde un máximo a un mínimo.</p>
                 <p class="indent-36 f-14">Tomando en cuenta todas las características de su propiedad, con el propósito de tener un precio competitivo de mercado que nos permita negociar su inmueble con la mayor efectividad y en el menor tiempo posible se recomienda el siguiente precio basado en un rango de precios:</p>
             </div>
 
             <div>
-                <h2 class="text-center f-18">Precio Sugerido: <?php echo $curSymbol.'/ '.$finalPrice.'/'.$currency ?></h2>
+                <h2 class="text-center f-18">Precio Sugerido: <?php echo $curSymbol.'/ '.$finalPrice.' '.$currency ?></h2>
             </div>
 
             <div style="padding: 0 50px">
