@@ -20,8 +20,9 @@ class CheckTypeMiddleware
      */
     public function handle($request, Closure $next, $type)
     {
-        $userType = trim(Auth::guard('api')->user()->Flg_TipoUsuario);
-
+        $user = Auth::guard('api')->user();
+        $userType = trim($user->Flg_TipoUsuario);
+        
         if(!$userType){
             return response()->json([
                 'error' => 'No puedes acceder al sistema',

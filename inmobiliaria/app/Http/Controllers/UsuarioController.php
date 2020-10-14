@@ -38,7 +38,7 @@ class UsuarioController extends Controller
     // LOGIN
     public function login(Request $request)
     {       
-    // echo $password = Hash::make('admin'); 
+        // echo $password = Hash::make('123123'); 
         $password = $request->input('password');
         $usuario  = $request->input('user');
         $data     = $request->json()->all();
@@ -67,6 +67,10 @@ class UsuarioController extends Controller
                 
                         }
 
+						$activity = round(microtime(true)*1000);
+                        $user->access_token = $token;
+                        $user->last_activity = $activity;
+                        $user->save();
                         $persona = DB::table('persona')->where('IdPersonal', $user->IdPersonal)->first();
 
                         return response()->json([
