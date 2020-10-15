@@ -265,6 +265,7 @@ class PersonaController extends Controller
                     'persona.Des_Rs_Facebook',
                     'persona.Des_Rs_Twitter',
                     'persona.Des_Rs_Linkedin',
+                    'persona.Des_Rs_Instagram',
                     'persona.Img_Personal'
                 )->where('resumenagente.IdPersonal', $personaId)->first();
         
