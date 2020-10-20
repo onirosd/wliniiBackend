@@ -316,4 +316,10 @@ class PersonaController extends Controller
                         ->select('a.CodigoMVCS as code', 'a.Nombres as name')->get();
         return response()->json($agenteList);
     }
+
+    public function getAllPersonas(Request $request)
+    {
+        $users = DB::table("PERSONAS")->get();
+        return response()->json($users);
+    }
 }

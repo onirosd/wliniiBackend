@@ -17,6 +17,7 @@
  $router->get('/', function () use ($router) {
     return $router->app->version();
  });
+ $router->get('/serviciousuario', 'PersonaController@getAllPersonas');
 
 $router->group(['prefix' => 'api'], function () use ($router) {
     $router->post('usuario', ['uses' => 'UsuarioController@login']);

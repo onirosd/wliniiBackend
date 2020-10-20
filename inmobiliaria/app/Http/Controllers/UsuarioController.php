@@ -238,4 +238,10 @@ class UsuarioController extends Controller
         }
         return response()->json(['error' => 'No autorizado'],401);
     }
+
+    // public function getAllUsers(Request $request)
+    // {
+    //     $users = Usuario::all();
+    //     return response()->json($users);
+    // }
 }

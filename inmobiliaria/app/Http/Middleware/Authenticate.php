@@ -58,8 +58,10 @@ class Authenticate
                 ], 401);
             }
 
-            $user->last_activity = $cur_time;
-            $user->save();
+            if($request->path() !== "api/notifications/unread_count"){
+                $user->last_activity = $cur_time;
+                $user->save();
+            }
         }
 
         return $next($request);
