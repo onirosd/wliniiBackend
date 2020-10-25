@@ -21,7 +21,8 @@ class PublicationController extends Controller
      */
     public function __construct()
     {
-        $this->storage_path = base_path().'/public';
+        $this->storage_path = base_path().'/../../appservice';
+        // $this->storage_path = base_path().'/public';
     }
 
     private function authUser()
@@ -312,7 +313,11 @@ class PublicationController extends Controller
         }
 
         DB::table('publicaciondetalleimagenes')->insert($data);
-        return json_encode(array('status' => 'success', 'message' => 'successfully uploaded'));
+
+        return response()->json([
+            'status' => 'success',
+            'message' => 'successfully uploaded'
+        ]);
     }
 
     public function removeImage(Request $request, $imageId){
@@ -321,27 +326,18 @@ class PublicationController extends Controller
             $image = DB::table('publicaciondetalleimagenes')->where('IdPubImage', $imageId)->first();
             $id = DB::table('publicaciondetalleimagenes')->where('IdPubImage', $imageId)->delete();
 
-            try{
-                unlink($this->storage_path.$image->Des_url);
-            }catch(Exception $e){
-                
-            }
+            @unlink($this->storage_path.$image->Des_url);
             
             return response()->json([
                 'status' => 'success',
                 'message' => 'Image removed successfully.'
             ]);
-        }catch(Throwable $e){
+        }catch(Exception $e){
             return response()->json([
                 'status' => 'fail',
                 'message' => "can't remove the image"
             ]);
         }
-
-        return response()->json([
-            'status' => 'success',
-            'message' => 'A image was removed successfully'
-        ]);
     }
 
     public function updatePublicacionDetalle(Request $request){
@@ -401,16 +397,18 @@ class PublicationController extends Controller
                 'FechaCreacion' => $date
             );
 
-            $notiId=str_pad(intval($maxId) + 2, 8, "0", STR_PAD_LEFT);
-            $notifications[] = array(
-                'IdUsuario' => $selectedUserId,
-                'IdNotificacion' => $notiId,
-                'Flg_Tipo' => "1",
-                'Flg_Estado' => "0",
-                'Flg_Leer' => 0,
-                'IdUsuarioRemitente' => $userId,
-                'FechaCreacion' => $date
-            );
+            if($selectedUserId !== $userId){
+                $notiId=str_pad(intval($maxId) + 2, 8, "0", STR_PAD_LEFT);
+                $notifications[] = array(
+                    'IdUsuario' => $selectedUserId,
+                    'IdNotificacion' => $notiId,
+                    'Flg_Tipo' => "1",
+                    'Flg_Estado' => "0",
+                    'Flg_Leer' => 0,
+                    'IdUsuarioRemitente' => $userId,
+                    'FechaCreacion' => $date
+                );
+            }
 
             DB::table('notificaciones')->insert($notifications);
         }

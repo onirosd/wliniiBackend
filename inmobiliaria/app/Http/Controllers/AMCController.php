@@ -20,7 +20,7 @@ class AMCController extends Controller
      */
     public function __construct()
     {
-        $this->storage_path = base_path().'/public';
+        
     }
 
     private function authUser()

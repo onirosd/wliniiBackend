@@ -17,6 +17,7 @@
  $router->get('/', function () use ($router) {
     return $router->app->version();
  });
+ $router->get('/test', 'HomeController@test');
  $router->get('/serviciousuario', 'PersonaController@getAllPersonas');
 
 $router->group(['prefix' => 'api'], function () use ($router) {

@@ -18,7 +18,8 @@ class HomeController extends Controller
     public function __construct()
     {
         // 
-        $this->storage_path = base_path().'/public';
+        $this->storage_path = base_path().'/../../appservice';
+        // $this->storage_path = base_path().'/public';
     }
 
     public function index(Request $request)
@@ -100,6 +101,13 @@ class HomeController extends Controller
         return response()->json([
             'status' => 'success',
             'url' => $des_fileUrl
+        ]);
+    }
+
+    public function test(){
+        return response()->json([
+            'staus' => 'success',
+            'result' => app()
         ]);
     }
 }

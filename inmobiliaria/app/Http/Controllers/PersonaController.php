@@ -21,7 +21,8 @@ class PersonaController extends Controller
     public function __construct()
     {
         //
-        $this->storage_path = base_path().'/public';
+        $this->storage_path = base_path().'/../../appservice';
+        // $this->storage_path = base_path().'/public';
     }
 
     // 
@@ -280,20 +281,30 @@ class PersonaController extends Controller
             'file.*' => 'mimes:jpg,jpeg,png'
         ]);
 
-        $file = $request->file('file');
-        $fileName = time().'.'.$file->extension();
-        $file->move($this->storage_path.'/images/perfil/', $fileName);
+        try{
+            $file = $request->file('file');
+            $fileName = time().'.'.$file->extension();
+            $file->move($this->storage_path.'/images/perfil/', $fileName);
 
-        $person = Persona::where("IdPersonal", $personId)->first();
-        $oldImage = $person->Img_Personal;
+            $person = Persona::where("IdPersonal", $personId)->first();
+            $oldImage = $person->Img_Personal;
 
-        Persona::where("IdPersonal", $personId)->update(['Img_Personal' => '/images/perfil/'.$fileName]);
-        
-        if($oldImage){
-            unlink($this->storage_path.$oldImage);
+            Persona::where("IdPersonal", $personId)->update(['Img_Personal' => '/images/perfil/'.$fileName]);
+            
+            if($oldImage){
+                @unlink($this->storage_path.$oldImage);
+            }
+
+            return response()->json([
+                'status' => 'success',
+                'url' => '/images/perfil/'.$fileName
+            ]);
+        }catch(Exception $e){
+            return response()->json([
+                'status' => 'fail'
+            ]);
         }
-
-        return response('/images/perfil/'.$fileName);
+        
     }
 
     public function findAgenteByCode($code){
