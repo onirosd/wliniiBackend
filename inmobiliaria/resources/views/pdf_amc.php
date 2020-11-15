@@ -157,7 +157,8 @@
                     <span style="border-top: 1px solid black"><?php echo $name ?></span></div>
                 <br>
                 <div><?php echo trim($type) == "1" ? 'Agente Inmobiliario' : 'Asesor Inmobiliario'; ?></div>
-                <div><?php echo $phone.'-'.$email; ?></div>
+                <div>Telf. <?php echo $phone; ?></div>
+                <div>Correo: <?php echo $email; ?></div>
             </div>
             
             <!-- <div class="page-footer">Lima Perú</div> -->

@@ -20,6 +20,7 @@
         }
         .page{
             padding: 40px 5px;
+            margin: 0;
         }
         .page-header{
             text-align: center;
@@ -46,6 +47,7 @@
         .table2{
             width: 100%;
             border-spacing: 4;
+            margin: 0;
         }
         .table2 thead th{
             width: 33.3%;
@@ -181,9 +183,9 @@
 
                             <div class="text-center f-13">
                                 <div style="margin-top: 20px; margin-bottom: 10px">
-                                    <img src="<?php echo $person->Img_Personal ? base_path().'/public'.$person->Img_Personal : 'img/dummy_user.jpg'; ?>" alt="" style="width: 120px">
+                                    <img src="<?php echo $person->Img_Personal ? base_path().'/../../appservice'.$person->Img_Personal : 'img/dummy_user.jpg'; ?>" alt="" style="width: 120px">
                                 </div>
-                                <div>FOTO DEL USUARIO</div>
+                                <!-- <div>FOTO DEL USUARIO</div> -->
                                 <div>Agente: <?php echo $person->Des_NombreCompleto ?></div>
                                 <div>Correo: <?php echo $person->Des_Correo1 ?></div>
                                 <div>Telefono: <?php echo $person->Des_Telefono1 ?></div>
@@ -194,7 +196,7 @@
                         <div class="f-14" style="padding: 50px 15px">
                             <div class="text-center">
                                 <div class="pub-photo">
-                                    <img src="<?php echo count($images) > 0 ? base_path().'/public'.$images[0]->Des_url : 'img/dummy.jpg'; ?>" alt="">
+                                    <img src="<?php echo count($images) > 0 ? base_path().'/../../appservice'.$images[0]->Des_url : 'img/dummy.jpg'; ?>" alt="">
                                 </div>
                                 <br>
                                 <div>UBICACIÓN DEL INMUEBLE</div>
@@ -233,8 +235,8 @@
                 <div style="font-size: 22px;"><?php echo $pubInfo->Des_Subtitulo ?></div>
             </div>
 
-            <div style="padding: 10px">
-                <div class="clearfix" style="margin: 20px 20px 20px 0px">
+            <div style="padding: 10px; margin: 0">
+                <div class="clearfix" style="margin: 20px 20px 0px 0px">
                     <span class="right clearfix">ID: <?php echo $pubInfo->IdPubCabecera ?></span>    
                     <span>CATÁLOGO DE PUBLICACIÓN</span>
                 </div>
@@ -251,7 +253,7 @@
                         ?>
                                         <th>
                                             <div class="image-wrapper">
-                                                <img src="<?php echo base_path().'/public'.$images[$num]->Des_url; ?>" alt="">
+                                                <img src="<?php echo base_path().'/../../appservice'.$images[$num]->Des_url; ?>" alt="">
                                             </div>
                                         </th>
                         <?php
