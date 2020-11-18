@@ -102,6 +102,7 @@ $app->register(App\Providers\AppServiceProvider::class);
 $app->register(App\Providers\AuthServiceProvider::class);
 $app->register(Illuminate\Mail\MailServiceProvider::class);
 $app->register(\Barryvdh\DomPDF\ServiceProvider::class);
+$app->register(Intervention\Image\ImageServiceProvider::class);
 // $app->register(Illuminate\Filesystem\FilesystemServiceProvider::class);
 // $app->register(App\Providers\EventServiceProvider::class);
 
@@ -111,6 +112,7 @@ $app->alias('mailer', Illuminate\Contracts\Mail\Mailer::class);
 $app->alias('mailer', Illuminate\Contracts\Mail\MailQueue::class);
 
 $app->configure('dompdf');
+$app->alias('Image', Intervention\Image\Facades\Image::class);
 
 // $app->configure('filesystems');
 // class_alias('Illuminate\Support\Facades\Storage', 'Storage');

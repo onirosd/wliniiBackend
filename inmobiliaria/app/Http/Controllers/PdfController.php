@@ -7,6 +7,7 @@ use Illuminate\Support\Facades\Storage;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Intervention\Image\Facades\Image;
 
 /**
 * Pdf Controller
@@ -78,46 +79,31 @@ class PdfController extends Controller
 
             try{
                 $data = file_get_contents($url);
-                file_put_contents(base_path().'/public/map.png', $data);
+                file_put_contents(base_path().'/../../appservice/map.png', $data);
                 $mapUrl = 'map.png';
             }catch(Exception $e){
                 $mapUrl = 'dummy_map.png';
             }
-            
-            
-            // $ch      = curl_init();
-            // $timeout = 0;
-            // curl_setopt( $ch, CURLOPT_URL, $url );
-            // curl_setopt( $ch, CURLOPT_SSL_VERIFYPEER, false );
-            // curl_setopt($ch, CURLOPT_SSL_VERIFYHOST, false);
-            // curl_setopt( $ch, CURLOPT_RETURNTRANSFER, 1 );
-            // // curl_setopt( $ch,CURLOPT_USERAGENT,'Mozilla/5.0 (Windows; U; Windows NT 5.1; en-US; rv:1.8.1.13) Gecko/20080311 Firefox/2.0.0.13');
-            // curl_setopt( $ch, CURLOPT_HEADER, 0 );
-            // curl_setopt( $ch, CURLOPT_CONNECTTIMEOUT, $timeout );
-            // $data = curl_exec( $ch );
-
-            // if(curl_errno($ch)){
-            //     echo 'curl error: '.curl_error($ch);
-            // }else{
-            //     file_put_contents(base_path().'/public/map.png', $data);
-            // }
-            
-            // curl_close($ch);
         }else{
             $mapUrl = 'dummy_map.png';
         }
-        
+
         $info = array(
             'pubInfo' => $publication,
             'person' => $persona,
             'images' => $images,
             'mapUrl' => $mapUrl,
-            'isMarker' => $isMarker
+            'isMarker' => $isMarker,
         );
-        // $url = "http://maps.googleapis.com/maps/api/staticmap?center=40.714728,-73.998672&zoom=12&size=500x400&markers=color:red|40.714728,-73.998672&key=AIzaSyCrfoNwsy3VVdbmuO9lr8ITavPXX5l78HI";
 
         $pdf = app()->make('dompdf.wrapper');
-        $pdf->loadView('pdf_publication', $info);
+        $pdf->loadView('pdf_publication', $info)
+            ->setOptions([
+                'isHtml5ParserEnabled' => true,
+                'isRemoteEnabled' => true,
+                'tempDir' => realpath(base_path()."/../../appservice"),
+                'chroot' => realpath(base_path()."/../../appservice")
+                ]);
         return $pdf->download('detalle.pdf');
     }
 
